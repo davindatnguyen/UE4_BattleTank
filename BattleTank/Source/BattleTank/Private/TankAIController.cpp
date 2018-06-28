@@ -10,6 +10,14 @@ void ATankAIController::BeginPlay()
 
 }
 
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	AimTowardsCrossHair();
+
+}
+
 void ATankAIController::CheckPlayerPawn()
 {
 	auto PlayerTank = GetPlayerControlledTank();
@@ -29,6 +37,11 @@ void ATankAIController::CheckAIControlledTank()
 	}
 	else { UE_LOG(LogTemp, Warning, TEXT("AIController Possessing: %s"), *AIControlledTank->GetName()); }
 
+}
+
+void ATankAIController::AimTowardsCrossHair()
+{
+	if (!GetPlayerControlledTank()) { return;  }
 }
 
 ATank* ATankAIController::GetAIControlledTank() const

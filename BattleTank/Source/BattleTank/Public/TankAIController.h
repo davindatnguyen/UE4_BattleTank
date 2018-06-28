@@ -20,8 +20,10 @@ public:
 
 private:
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 	void CheckAIControlledTank();
 	void CheckPlayerPawn();
+	void AimTowardsCrossHair();
 	ATank* GetAIControlledTank() const;
 	ATank* GetPlayerControlledTank() const;
 
