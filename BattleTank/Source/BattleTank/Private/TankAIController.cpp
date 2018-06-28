@@ -11,14 +11,6 @@ void ATankAIController::BeginPlay()
 
 }
 
-void ATankAIController::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-	AimTowardsCrossHair();
-
-}
-
 void ATankAIController::CheckPlayerPawn()
 {
 	auto PlayerTank = GetPlayerControlledTank();
@@ -52,19 +44,3 @@ ATank* ATankAIController::GetPlayerControlledTank() const
 	return Cast<ATank>(PlayerPawn);
 }
 
-void ATankAIController::AimTowardsCrossHair()
-{
-	if (!GetPlayerControlledTank()) { return;  }
-
-	FVector HitLocation;
-	if (GetSightRayHitLocation(HitLocation))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
-	}
-}
-
-bool ATankAIController::GetSightRayHitLocation(FVector& HitLocation) const
-{
-	HitLocation = FVector(1.0);
-	return true;
-}
