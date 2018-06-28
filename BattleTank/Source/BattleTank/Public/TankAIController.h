@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Tank.h"
-#include "Runtime/Engine/Classes/GameFramework/Actor.h"
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
@@ -26,5 +25,6 @@ private:
 	void AimTowardsCrossHair();
 	ATank* GetAIControlledTank() const;
 	ATank* GetPlayerControlledTank() const;
+	bool GetSightRayHitLocation(FVector& HitLocation) const;
 
 };

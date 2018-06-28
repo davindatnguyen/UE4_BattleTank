@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAIController.h"
+#include "Runtime/Engine/Classes/GameFramework/Actor.h"
 
 void ATankAIController::BeginPlay()
 {
@@ -39,11 +40,6 @@ void ATankAIController::CheckAIControlledTank()
 
 }
 
-void ATankAIController::AimTowardsCrossHair()
-{
-	if (!GetPlayerControlledTank()) { return;  }
-}
-
 ATank* ATankAIController::GetAIControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
@@ -54,4 +50,21 @@ ATank* ATankAIController::GetPlayerControlledTank() const
 	auto PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
 	if (!PlayerPawn) { return nullptr; }
 	return Cast<ATank>(PlayerPawn);
+}
+
+void ATankAIController::AimTowardsCrossHair()
+{
+	if (!GetPlayerControlledTank()) { return;  }
+
+	FVector HitLocation;
+	if (GetSightRayHitLocation(HitLocation))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
+	}
+}
+
+bool ATankAIController::GetSightRayHitLocation(FVector& HitLocation) const
+{
+	HitLocation = FVector(1.0);
+	return true;
 }
