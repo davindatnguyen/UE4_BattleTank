@@ -24,6 +24,7 @@ private:
 	void CheckControlledTank();
 	bool GetSightRayHitLocation(FVector& HitLocation) const;
 	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
+	bool GetVectorHitLocation(FVector LookDirection, FVector &HitLocation) const;
 	void AimTowardsCrossHair();
 
 	UPROPERTY(EditAnywhere)
@@ -31,5 +32,8 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float CrossHairYLocation = 0.443f;
+
+	UPROPERTY(EditAnywhere)
+	float LineTraceRange = 1000000.f;
 
 };
